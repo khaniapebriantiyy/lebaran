@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Eid Mubarak 1447H</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div id="envelope-overlay">
+    <div id="envelope-wrapper" class="envelope-wrapper" role="button" aria-label="Buka amplop lebaran" tabindex="0">
+      <div id="envelope" class="envelope">
+        <div class="envelope-body">
+          <div class="envelope-seal">🌙</div>
+        </div>
+        <div class="envelope-flap"></div>
+      </div>
+      <span class="envelope-hint">Ketuk untuk membuka</span>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════
+       BACKGROUND ORNAMENTS
+  ════════════════════════════ -->
+  <div class="bg-ornament" aria-hidden="true">
+    <div id="stars-layer" class="stars-layer"></div>
+    <div class="geo-pattern"></div>
+    <div class="geo-pattern geo-pattern-2"></div>
+  </div>
+
+
+  <!-- ════════════════════════════
+       THEME TOGGLE
+  ════════════════════════════ -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle tema">
+    <span id="theme-icon" class="theme-icon">☀️</span>
+    <span id="theme-label">Siang</span>
+  </button>
+
+
+  <!-- ════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════ -->
+  <main id="main-content" aria-live="polite">
+
+    <!-- ── MOSQUE HEADER ── -->
+    <header class="site-header" aria-label="Ilustrasi masjid">
+      <div class="mosque-container">
+
+        <!-- Celestial bodies are rendered inside the SVG -->
+
+        <!-- Mosque SVG -->
+        <svg class="mosque-svg" viewBox="0 0 500 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kubah masjid">
+          <defs>
+            <!-- Glow filter for night outline -->
+            <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glow-soft" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Window glow night -->
+            <filter id="window-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Sun ray gradient -->
+            <radialGradient id="sun-rays" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f5e080" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#f5e080" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Sky gradient day -->
+            <linearGradient id="sky-day" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c9e8f7" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#faf8f3" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- ══════════════════════════════════
+               DAY SKY ORNAMENTS
+          ══════════════════════════════════ -->
+          <g class="day-sky-layer">
+            <!-- Sky tint -->
+            <rect x="0" y="0" width="500" height="130" fill="url(#sky-day)" rx="4"/>
+
+            <!-- Sun glow blob (top-right, far from dome) -->
+            <circle cx="460" cy="22" r="38" fill="url(#sun-rays)" class="sun-glow"/>
+            <!-- Sun core -->
+            <circle cx="460" cy="22" r="14" class="sun-core-fill" opacity="0.85"/>
+            <!-- Sun rays -->
+            <g class="sun-rays-lines" transform="translate(460,22)">
+              <line x1="0" y1="-22" x2="0" y2="-32" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="22" x2="0" y2="32" stroke-width="2" stroke-linecap="round"/>
+              <line x1="-22" y1="0" x2="-32" y2="0" stroke-width="2" stroke-linecap="round"/>
+              <line x1="22" y1="0" x2="32" y2="0" stroke-width="2" stroke-linecap="round"/>
+              <line x1="-15" y1="-15" x2="-22" y2="-22" stroke-width="2" stroke-linecap="round"/>
+              <line x1="15" y1="-15" x2="22" y2="-22" stroke-width="2" stroke-linecap="round"/>
+              <line x1="-15" y1="15" x2="-22" y2="22" stroke-width="2" stroke-linecap="round"/>
+              <line x1="15" y1="15" x2="22" y2="22" stroke-width="2" stroke-linecap="round"/>
+            </g>
+
+            <!-- Cloud left -->
+            <g class="cloud-day" transform="translate(40,38)">
+              <ellipse cx="0"  cy="0" rx="28" ry="16" opacity="0.85"/>
+              <ellipse cx="22" cy="-5" rx="20" ry="14" opacity="0.85"/>
+              <ellipse cx="44" cy="2" rx="24" ry="14" opacity="0.85"/>
+              <ellipse cx="20" cy="6" rx="36" ry="10" opacity="0.85"/>
+            </g>
+
+            <!-- Cloud right small -->
+            <g class="cloud-day" transform="translate(320,20)">
+              <ellipse cx="0"  cy="0" rx="18" ry="10" opacity="0.7"/>
+              <ellipse cx="15" cy="-4" rx="14" ry="9" opacity="0.7"/>
+              <ellipse cx="30" cy="1" rx="16" ry="9" opacity="0.7"/>
+              <ellipse cx="14" cy="5" rx="24" ry="7" opacity="0.7"/>
+            </g>
+
+            <!-- Birds (small V shapes) -->
+            <g class="bird-day" opacity="0.6">
+              <path d="M155,22 Q158,18 161,22" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M163,18 Q166,14 169,18" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M173,24 Q176,20 179,24" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M222,12 Q225,8 228,12" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M233,16 Q236,12 239,16" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+
+            <!-- Islamic geometric rosette top-left -->
+            <g class="geo-rosette" transform="translate(60,55) scale(0.55)" opacity="0.5">
+              <!-- 8-pointed star -->
+              <polygon points="0,-22 5.5,-5.5 22,0 5.5,5.5 0,22 -5.5,5.5 -22,0 -5.5,-5.5" class="rosette-fill"/>
+              <polygon points="0,-16 4,-4 16,0 4,4 0,16 -4,4 -16,0 -4,-4"
+                transform="rotate(22.5)" class="rosette-stroke-only"/>
+              <circle cx="0" cy="0" r="6" class="rosette-fill" opacity="0.6"/>
+            </g>
+
+            <!-- Small diamonds / sparkles day -->
+            <g class="sparkle-day" opacity="0.55">
+              <path d="M290,35 L293,30 L296,35 L293,40 Z" class="sparkle-fill"/>
+              <path d="M310,52 L312,48 L314,52 L312,56 Z" class="sparkle-fill"/>
+              <path d="M130,44 L132,40 L134,44 L132,48 Z" class="sparkle-fill"/>
+              <path d="M468,46 L470,42 L472,46 L470,50 Z" class="sparkle-fill"/>
+            </g>
+
+            <!-- Hanging lanterns (fanous) -->
+            <g class="lantern-day" opacity="0.7">
+              <!-- Left lantern -->
+              <line x1="88" y1="0" x2="88" y2="14" stroke-width="1.2" stroke-linecap="round" class="lantern-line"/>
+              <ellipse cx="88" cy="22" rx="6" ry="10" class="lantern-body"/>
+              <rect x="84" y="14" width="8" height="3" rx="1.5" class="lantern-cap"/>
+              <rect x="84" y="30" width="8" height="3" rx="1.5" class="lantern-cap"/>
+              <line x1="86" y1="17" x2="86" y2="30" stroke-width="0.8" class="lantern-rib"/>
+              <line x1="88" y1="17" x2="88" y2="30" stroke-width="0.8" class="lantern-rib"/>
+              <line x1="90" y1="17" x2="90" y2="30" stroke-width="0.8" class="lantern-rib"/>
+              <!-- Right lantern -->
+              <line x1="412" y1="0" x2="412" y2="14" stroke-width="1.2" stroke-linecap="round" class="lantern-line"/>
+              <ellipse cx="412" cy="22" rx="6" ry="10" class="lantern-body"/>
+              <rect x="408" y="14" width="8" height="3" rx="1.5" class="lantern-cap"/>
+              <rect x="408" y="30" width="8" height="3" rx="1.5" class="lantern-cap"/>
+              <line x1="410" y1="17" x2="410" y2="30" stroke-width="0.8" class="lantern-rib"/>
+              <line x1="412" y1="17" x2="412" y2="30" stroke-width="0.8" class="lantern-rib"/>
+              <line x1="414" y1="17" x2="414" y2="30" stroke-width="0.8" class="lantern-rib"/>
+            </g>
+          </g>
+
+          <!-- ══════════════════════════════════
+               NIGHT SKY ORNAMENTS
+          ══════════════════════════════════ -->
+          <g class="night-sky-layer">
+            <!-- Moon glow -->
+            <circle cx="42" cy="22" r="22" class="night-glow-circle" opacity="0.15"/>
+            <!-- Moon crescent -->
+            <circle cx="42" cy="22" r="15" class="night-moon-fill"/>
+            <circle cx="52" cy="17" r="12" class="night-moon-mask"/>
+
+            <!-- Constellation dots -->
+            <g class="night-constellation" opacity="0.7">
+              <circle cx="55"  cy="18" r="1.8" class="night-star-dot"/>
+              <circle cx="78"  cy="30" r="1.2" class="night-star-dot"/>
+              <circle cx="100" cy="15" r="1.5" class="night-star-dot"/>
+              <circle cx="68"  cy="48" r="1"   class="night-star-dot"/>
+              <!-- Connect lines faint -->
+              <line x1="55" y1="18" x2="78" y2="30" stroke-width="0.5" class="night-constel-line" opacity="0.25"/>
+              <line x1="78" y1="30" x2="100" y2="15" stroke-width="0.5" class="night-constel-line" opacity="0.25"/>
+              <line x1="78" y1="30" x2="68" y2="48" stroke-width="0.5" class="night-constel-line" opacity="0.25"/>
+
+              <circle cx="340" cy="22" r="1.5" class="night-star-dot"/>
+              <circle cx="362" cy="12" r="1"   class="night-star-dot"/>
+              <circle cx="380" cy="30" r="1.8" class="night-star-dot"/>
+              <circle cx="355" cy="38" r="1"   class="night-star-dot"/>
+              <line x1="340" y1="22" x2="362" y2="12" stroke-width="0.5" class="night-constel-line" opacity="0.25"/>
+              <line x1="362" y1="12" x2="380" y2="30" stroke-width="0.5" class="night-constel-line" opacity="0.25"/>
+              <line x1="380" y1="30" x2="355" y2="38" stroke-width="0.5" class="night-constel-line" opacity="0.25"/>
+
+              <circle cx="200" cy="10" r="1.2" class="night-star-dot"/>
+              <circle cx="218" cy="22" r="1"   class="night-star-dot"/>
+              <circle cx="240" cy="8"  r="1.5" class="night-star-dot"/>
+            </g>
+
+            <!-- Night hanging lanterns (glowing) -->
+            <g class="night-lantern" filter="url(#glow-soft)">
+              <line x1="88" y1="0" x2="88" y2="14" stroke-width="1.2" stroke-linecap="round" class="night-lantern-line"/>
+              <ellipse cx="88" cy="22" rx="6" ry="10" class="night-lantern-body"/>
+              <rect x="84" y="14" width="8" height="3" rx="1.5" class="night-lantern-cap"/>
+              <rect x="84" y="30" width="8" height="3" rx="1.5" class="night-lantern-cap"/>
+              <line x1="86" y1="17" x2="86" y2="30" stroke-width="0.8" class="night-lantern-rib"/>
+              <line x1="88" y1="17" x2="88" y2="30" stroke-width="0.8" class="night-lantern-rib"/>
+              <line x1="90" y1="17" x2="90" y2="30" stroke-width="0.8" class="night-lantern-rib"/>
+              <!-- glow beneath lantern -->
+              <ellipse cx="88" cy="34" rx="6" ry="3" class="night-lantern-glow" opacity="0.4"/>
+
+              <line x1="412" y1="0" x2="412" y2="14" stroke-width="1.2" stroke-linecap="round" class="night-lantern-line"/>
+              <ellipse cx="412" cy="22" rx="6" ry="10" class="night-lantern-body"/>
+              <rect x="408" y="14" width="8" height="3" rx="1.5" class="night-lantern-cap"/>
+              <rect x="408" y="30" width="8" height="3" rx="1.5" class="night-lantern-cap"/>
+              <line x1="410" y1="17" x2="410" y2="30" stroke-width="0.8" class="night-lantern-rib"/>
+              <line x1="412" y1="17" x2="412" y2="30" stroke-width="0.8" class="night-lantern-rib"/>
+              <line x1="414" y1="17" x2="414" y2="30" stroke-width="0.8" class="night-lantern-rib"/>
+              <ellipse cx="412" cy="34" rx="6" ry="3" class="night-lantern-glow" opacity="0.4"/>
+            </g>
+          </g>
+
+          <!-- ══════════════════════════════════
+               MOSQUE — SOLID FILL LAYER (day)
+          ══════════════════════════════════ -->
+          <g class="mosque-solid-layer">
+            <!-- MINARET LEFT solid -->
+            <rect x="30" y="80" width="28" height="130" class="wall-fill" rx="2"/>
+            <rect x="27" y="76" width="34" height="10" class="dome-fill" rx="3"/>
+            <ellipse cx="44" cy="76" rx="14" ry="8" class="dome-fill"/>
+            <path d="M38,76 Q44,55 50,76" class="dome-fill" stroke="none"/>
+            <line x1="44" y1="55" x2="44" y2="42" stroke-width="2.5" class="dome-stroke" stroke-linecap="round"/>
+            <path d="M40,55 Q44,48 48,55" class="dome-fill"/>
+            <path d="M41,42 Q44,36 47,40 Q43,38 41,42" class="detail" fill-rule="evenodd"/>
+            <rect x="37" y="100" width="14" height="18" class="window-fill" rx="7 7 2 2"/>
+            <rect x="37" y="128" width="14" height="14" class="window-fill" rx="7 7 2 2"/>
+            <rect x="37" y="152" width="14" height="14" class="window-fill" rx="7 7 2 2"/>
+
+            <!-- MINARET RIGHT solid -->
+            <rect x="442" y="80" width="28" height="130" class="wall-fill" rx="2"/>
+            <rect x="439" y="76" width="34" height="10" class="dome-fill" rx="3"/>
+            <ellipse cx="456" cy="76" rx="14" ry="8" class="dome-fill"/>
+            <path d="M450,76 Q456,55 462,76" class="dome-fill" stroke="none"/>
+            <line x1="456" y1="55" x2="456" y2="42" stroke-width="2.5" class="dome-stroke" stroke-linecap="round"/>
+            <path d="M452,55 Q456,48 460,55" class="dome-fill"/>
+            <path d="M453,42 Q456,36 459,40 Q455,38 453,42" class="detail" fill-rule="evenodd"/>
+            <rect x="449" y="100" width="14" height="18" class="window-fill" rx="7 7 2 2"/>
+            <rect x="449" y="128" width="14" height="14" class="window-fill" rx="7 7 2 2"/>
+            <rect x="449" y="152" width="14" height="14" class="window-fill" rx="7 7 2 2"/>
+
+            <!-- MAIN BODY solid -->
+            <rect x="58" y="110" width="384" height="120" class="wall-fill" rx="4"/>
+
+            <!-- SMALL SIDE DOMES -->
+            <path d="M100,110 Q100,80 130,80 Q160,80 160,110Z" class="dome-fill"/>
+            <ellipse cx="130" cy="80" rx="8" ry="5" class="dome-fill"/>
+            <line x1="130" y1="75" x2="130" y2="65" stroke-width="2" class="dome-stroke" stroke-linecap="round"/>
+            <path d="M127,65 Q130,60 133,65" class="dome-fill"/>
+
+            <path d="M340,110 Q340,80 370,80 Q400,80 400,110Z" class="dome-fill"/>
+            <ellipse cx="370" cy="80" rx="8" ry="5" class="dome-fill"/>
+            <line x1="370" y1="75" x2="370" y2="65" stroke-width="2" class="dome-stroke" stroke-linecap="round"/>
+            <path d="M367,65 Q370,60 373,65" class="dome-fill"/>
+
+            <!-- MAIN CENTER DOME solid -->
+            <path d="M160,110 Q160,30 250,30 Q340,30 340,110Z" class="dome-fill"/>
+            <path d="M170,110 Q172,50 210,38" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M250,30 Q250,110 250,110" fill="none" class="dome-stroke" stroke-width="1.5" opacity="0.3"/>
+            <path d="M200,38 Q220,110 250,110" fill="none" class="dome-stroke" stroke-width="1" opacity="0.2"/>
+            <path d="M300,38 Q280,110 250,110" fill="none" class="dome-stroke" stroke-width="1" opacity="0.2"/>
+
+            <!-- Main spire -->
+            <line x1="250" y1="30" x2="250" y2="8" stroke-width="3" class="dome-stroke" stroke-linecap="round"/>
+            <path d="M244,8 Q250,0 257,4 Q250,1 244,8" class="detail"/>
+            <circle cx="255" cy="3" r="2.5" class="dome-fill" opacity="0.6"/>
+
+            <!-- Decorative bands -->
+            <rect x="162" y="108" width="176" height="6" class="detail" opacity="0.3" rx="2"/>
+            <rect x="58" y="108" width="384" height="8" class="dome-fill" opacity="0.4" rx="2"/>
+
+            <!-- ARCHED WINDOWS ON BODY (solid) -->
+            <path d="M90,230 L90,160 Q90,145 105,145 Q120,145 120,160 L120,230" class="window-fill" opacity="0.7"/>
+            <path d="M168,230 L168,155 Q168,138 183,138 Q198,138 198,155 L198,230" class="window-fill" opacity="0.7"/>
+            <path d="M218,230 L218,148 Q218,126 250,126 Q282,126 282,148 L282,230" class="window-fill" opacity="0.8"/>
+            <path d="M302,230 L302,155 Q302,138 317,138 Q332,138 332,155 L332,230" class="window-fill" opacity="0.7"/>
+            <path d="M380,230 L380,160 Q380,145 395,145 Q410,145 410,160 L410,230" class="window-fill" opacity="0.7"/>
+
+            <!-- Ground -->
+            <rect x="0" y="228" width="500" height="4" class="dome-fill" opacity="0.2" rx="2"/>
+          </g>
+
+          <!-- ══════════════════════════════════
+               MOSQUE — NIGHT OUTLINE LAYER
+               Glowing stroked edges visible
+               only on dark background
+          ══════════════════════════════════ -->
+          <g class="mosque-night-outline" filter="url(#glow-gold)">
+
+            <!-- Left minaret outline -->
+            <rect x="30" y="80" width="28" height="130" class="night-outline-wall" rx="2" fill="none" stroke-width="1.2"/>
+            <path d="M38,76 Q44,55 50,76 L44,76 Z" fill="none" class="night-outline-dome" stroke-width="1.5"/>
+            <ellipse cx="44" cy="76" rx="14" ry="8" fill="none" class="night-outline-dome" stroke-width="1.2"/>
+            <rect x="27" y="76" width="34" height="10" fill="none" class="night-outline-dome" rx="3" stroke-width="1"/>
+            <!-- Minaret left windows outlined + glow fill -->
+            <rect x="37" y="100" width="14" height="18" class="night-window-glow" rx="7 7 2 2"/>
+            <rect x="37" y="100" width="14" height="18" fill="none" class="night-outline-window" rx="7 7 2 2" stroke-width="1"/>
+            <rect x="37" y="128" width="14" height="14" class="night-window-glow" rx="7 7 2 2"/>
+            <rect x="37" y="128" width="14" height="14" fill="none" class="night-outline-window" rx="7 7 2 2" stroke-width="1"/>
+            <rect x="37" y="152" width="14" height="14" class="night-window-glow" rx="7 7 2 2"/>
+            <rect x="37" y="152" width="14" height="14" fill="none" class="night-outline-window" rx="7 7 2 2" stroke-width="1"/>
+            <!-- Minaret left spire outline -->
+            <line x1="44" y1="55" x2="44" y2="42" stroke-width="1.5" class="night-outline-dome" stroke-linecap="round"/>
+            <path d="M40,55 Q44,48 48,55" fill="none" class="night-outline-dome" stroke-width="1.2"/>
+            <path d="M41,42 Q44,36 47,40 Q43,38 41,42" fill="none" class="night-outline-detail" stroke-width="1" stroke-linecap="round"/>
+
+            <!-- Right minaret outline -->
+            <rect x="442" y="80" width="28" height="130" class="night-outline-wall" rx="2" fill="none" stroke-width="1.2"/>
+            <path d="M450,76 Q456,55 462,76 L456,76 Z" fill="none" class="night-outline-dome" stroke-width="1.5"/>
+            <ellipse cx="456" cy="76" rx="14" ry="8" fill="none" class="night-outline-dome" stroke-width="1.2"/>
+            <rect x="439" y="76" width="34" height="10" fill="none" class="night-outline-dome" rx="3" stroke-width="1"/>
+            <rect x="449" y="100" width="14" height="18" class="night-window-glow" rx="7 7 2 2"/>
+            <rect x="449" y="100" width="14" height="18" fill="none" class="night-outline-window" rx="7 7 2 2" stroke-width="1"/>
+            <rect x="449" y="128" width="14" height="14" class="night-window-glow" rx="7 7 2 2"/>
+            <rect x="449" y="128" width="14" height="14" fill="none" class="night-outline-window" rx="7 7 2 2" stroke-width="1"/>
+            <rect x="449" y="152" width="14" height="14" class="night-window-glow" rx="7 7 2 2"/>
+            <rect x="449" y="152" width="14" height="14" fill="none" class="night-outline-window" rx="7 7 2 2" stroke-width="1"/>
+            <line x1="456" y1="55" x2="456" y2="42" stroke-width="1.5" class="night-outline-dome" stroke-linecap="round"/>
+            <path d="M452,55 Q456,48 460,55" fill="none" class="night-outline-dome" stroke-width="1.2"/>
+            <path d="M453,42 Q456,36 459,40 Q455,38 453,42" fill="none" class="night-outline-detail" stroke-width="1" stroke-linecap="round"/>
+
+            <!-- Main body outline -->
+            <rect x="58" y="110" width="384" height="120" fill="none" class="night-outline-wall" rx="4" stroke-width="1.2"/>
+
+            <!-- Side dome left outline -->
+            <path d="M100,110 Q100,80 130,80 Q160,80 160,110Z" fill="none" class="night-outline-dome" stroke-width="1.5"/>
+            <ellipse cx="130" cy="80" rx="8" ry="5" fill="none" class="night-outline-dome" stroke-width="1"/>
+            <line x1="130" y1="75" x2="130" y2="65" stroke-width="1.5" class="night-outline-dome" stroke-linecap="round"/>
+            <path d="M127,65 Q130,60 133,65" fill="none" class="night-outline-dome" stroke-width="1"/>
+
+            <!-- Side dome right outline -->
+            <path d="M340,110 Q340,80 370,80 Q400,80 400,110Z" fill="none" class="night-outline-dome" stroke-width="1.5"/>
+            <ellipse cx="370" cy="80" rx="8" ry="5" fill="none" class="night-outline-dome" stroke-width="1"/>
+            <line x1="370" y1="75" x2="370" y2="65" stroke-width="1.5" class="night-outline-dome" stroke-linecap="round"/>
+            <path d="M367,65 Q370,60 373,65" fill="none" class="night-outline-dome" stroke-width="1"/>
+
+            <!-- Main center dome outline -->
+            <path d="M160,110 Q160,30 250,30 Q340,30 340,110Z" fill="none" class="night-outline-dome" stroke-width="2"/>
+            <!-- Dome ribs outlined -->
+            <path d="M250,30 L250,110" fill="none" class="night-outline-rib" stroke-width="0.8" opacity="0.5"/>
+            <path d="M200,38 Q220,110 250,110" fill="none" class="night-outline-rib" stroke-width="0.8" opacity="0.4"/>
+            <path d="M300,38 Q280,110 250,110" fill="none" class="night-outline-rib" stroke-width="0.8" opacity="0.4"/>
+
+            <!-- Main spire -->
+            <line x1="250" y1="30" x2="250" y2="8" stroke-width="2" class="night-outline-dome" stroke-linecap="round"/>
+            <path d="M244,8 Q250,0 257,4 Q250,1 244,8" fill="none" class="night-outline-detail" stroke-width="1.2"/>
+
+            <!-- Decorative band on wall outline -->
+            <rect x="58" y="108" width="384" height="8" fill="none" class="night-outline-dome" rx="2" stroke-width="0.8" opacity="0.6"/>
+
+            <!-- Arched windows / doors outlined with glow -->
+            <!-- Left arch -->
+            <path d="M90,230 L90,160 Q90,145 105,145 Q120,145 120,160 L120,230" class="night-window-glow" opacity="0.35"/>
+            <path d="M90,230 L90,160 Q90,145 105,145 Q120,145 120,160 L120,230" fill="none" class="night-outline-window" stroke-width="1.2"/>
+            <!-- Arch keystone detail -->
+            <circle cx="105" cy="145" r="3" class="night-window-glow" opacity="0.5"/>
+
+            <!-- Center-left arch -->
+            <path d="M168,230 L168,155 Q168,138 183,138 Q198,138 198,155 L198,230" class="night-window-glow" opacity="0.35"/>
+            <path d="M168,230 L168,155 Q168,138 183,138 Q198,138 198,155 L198,230" fill="none" class="night-outline-window" stroke-width="1.2"/>
+            <circle cx="183" cy="138" r="3" class="night-window-glow" opacity="0.5"/>
+
+            <!-- Center main door (brightest) -->
+            <path d="M218,230 L218,148 Q218,126 250,126 Q282,126 282,148 L282,230" class="night-window-glow" opacity="0.5"/>
+            <path d="M218,230 L218,148 Q218,126 250,126 Q282,126 282,148 L282,230" fill="none" class="night-outline-window" stroke-width="1.8"/>
+            <circle cx="250" cy="126" r="4" class="night-window-glow" opacity="0.7"/>
+            <!-- Door center line -->
+            <line x1="250" y1="130" x2="250" y2="230" stroke-width="0.8" class="night-outline-rib" opacity="0.4"/>
+
+            <!-- Center-right arch -->
+            <path d="M302,230 L302,155 Q302,138 317,138 Q332,138 332,155 L332,230" class="night-window-glow" opacity="0.35"/>
+            <path d="M302,230 L302,155 Q302,138 317,138 Q332,138 332,155 L332,230" fill="none" class="night-outline-window" stroke-width="1.2"/>
+            <circle cx="317" cy="138" r="3" class="night-window-glow" opacity="0.5"/>
+
+            <!-- Right arch -->
+            <path d="M380,230 L380,160 Q380,145 395,145 Q410,145 410,160 L410,230" class="night-window-glow" opacity="0.35"/>
+            <path d="M380,230 L380,160 Q380,145 395,145 Q410,145 410,160 L410,230" fill="none" class="night-outline-window" stroke-width="1.2"/>
+            <circle cx="395" cy="145" r="3" class="night-window-glow" opacity="0.5"/>
+
+            <!-- Ground line -->
+            <line x1="0" y1="230" x2="500" y2="230" stroke-width="1" class="night-outline-wall" opacity="0.4"/>
+          </g>
+
+        </svg>
+
+      </div>
+    </header>
+
+    <!-- ── MAIN GREETING CARD ── -->
+    <div class="page-wrapper">
+      <article class="card main-card" role="region" aria-label="Ucapan Idul Fitri">
+
+        <p class="arabic-text">تَقَبَّلَ اللهُ مِنَّا وَمِنكُم</p>
+        <h1 class="eid-title">Happy Eid Mubarak.</h1>
+        <h2 class="eid-subtitle">1447 Hijriyah</h2>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- Typed greeting -->
+        <p class="greeting-text" aria-live="polite">
+          <span id="typed-text"></span><span id="cursor" class="cursor" aria-hidden="true"></span>
+        </p>
+
+        <!-- Forgiveness question -->
+        <div id="question-box" class="question-box" aria-live="polite">
+          <p class="question-text">Dimaafin kan yaaaaaa?? 🥺</p>
+          <div class="btn-group">
+            <button id="btn-yes" class="btn btn-yes">Iya dong ✨</button>
+            <button id="btn-no" class="btn btn-no">Ga</button>
+          </div>
+        </div>
+
+        <!-- THR / QRIS section -->
+        <div id="thr-section" class="thr-section" aria-live="polite">
+          <div class="thr-inner">
+            <p class="thr-text">Makasih yaa~  btw pinjam dulu seratus 😇</p>
+            <div class="qris-frame">
+              <img src="Desain tanpa judul.png" alt="QRIS untuk transfer" loading="lazy">
+            </div>
+            <p class="thr-text" style="margin-top:12px; font-size:12px;">
+              Sebuah ruang kecil untuk merajut silaturahmi<br>dan berbagi apresiasi di hari kemenangan.
+            </p>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+
+    <!-- ── COMMENTS SECTION ── -->
+    <section class="comments-section" aria-label="Ucapan dan pesan">
+
+      <p class="section-label">✦ Kirim Ucapan ✦</p>
+
+      <!-- Form -->
+      <form id="comment-form" class="card comment-form-card" novalidate>
+        <div class="form-group">
+          <label for="name-input" class="form-label">Nama</label>
+          <input
+            type="text"
+            id="name-input"
+            class="form-input"
+            placeholder="Nama kamu..."
+            maxlength="60"
+            autocomplete="name"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="message-input" class="form-label">Pesan</label>
+          <textarea
+            id="message-input"
+            class="form-textarea"
+            placeholder="Tulis ucapan Lebaran-mu di sini..."
+            maxlength="500"
+            required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Kirim Ucapan 🌙</button>
+      </form>
+
+      <!-- Messages list -->
+      <p class="section-label" style="margin-top: 28px;">✦ Ucapan Teman ✦</p>
+      <div id="comments-list" class="comments-list" aria-live="polite" aria-label="Daftar ucapan"></div>
+
+    </section>
+
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <p>Created by Cania Febryanti · Selamat Hari Raya Idul Fitri 1447H</p>
+      <p style="margin-top: 6px; opacity: 0.5;">Taqabbalallahu minna wa minkum</p>
+    </footer>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+</body>
+</html>
